@@ -9,8 +9,6 @@ def main():
     
     #add cities table
     add_cities_table(cursor)
-    #add rows to table
-    add_cities(cursor)
     #commit changes
     connection.commit()
     #close connection
