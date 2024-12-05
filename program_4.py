@@ -29,13 +29,18 @@ def entries_table(cursor):
     cursor.executemany("insert into entries values (?,?,?)", entries_pop)
 
     #selects value from database
-    select=input("Enter first and last name of person whose phone number you would like to view:")
-    cursor.execute("select * from Entries where name=:c",{"c":select})
-    name_search=cursor.fetchall()
-    print(name_search)
+    cont1='y'
+    while cont1=='y':
+        select=input("Enter first and last name of person whose phone number you would like to view:")
+        cursor.execute("select * from Entries where name=:c",{"c":select})
+        name_search=cursor.fetchall()
+        print(name_search)
+        cont1=input("Would you like to search more names? Press y for yes or another key to continue.")
+        
+    
     
     #inserts new value into database
-    name=input("Enter name of person you would like to add to database:")
+    name=input("Enter the name of person you would like to add to database:")
     number=input("Enter their phone number:")
     cursor.execute('''INSERT INTO Entries (name,number) VALUES (?,?)''',(name,number))
     #deletes value of choice from database
