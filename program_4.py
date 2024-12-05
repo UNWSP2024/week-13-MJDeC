@@ -26,8 +26,21 @@ def entries_table(cursor):
                   (3,'Brandon Sanderson',99999999),
                   (4,'Steve Jobs',234566)]
     cursor.executemany("insert into entries values (?,?,?)", entries_pop)
-    #for row in cursor.execute("select * from entries"):
-        #print(row)
+
+    for row in cursor.execute("select * from entries"):
+        print(row)
+
+    #inserts new value into database
+    cursor.execute('''INSERT INTO Entries (Name,Number) VALUES ("Dude Person",890234123)''')
+    #deletes value of choice from database
+    delent=int(input("Enter the ID of the phone number to delete:"))
+    cursor.execute('''DELETE FROM Entries Where EntriesID==?''',(delent,))
+
+    #prints all values in database
+    for row in cursor.execute("select * from entries"):
+        print(row)
+    
+    #selects specific value from database
     cursor.execute("select * from entries where name=:n",{"n":"Micah DeCaro"})
     name_search=cursor.fetchall()
     print(name_search)
