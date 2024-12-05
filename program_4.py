@@ -21,18 +21,25 @@ def entries_table(cursor):
     cursor.execute('''CREATE TABLE Entries (EntriesID INTEGER PRIMARY KEY NOT NULL,Name TEXT,Number BLOB)''')
 
 #add rows to phonebook table
-    entries_pop = [(1,'Micah DeCaro','651-430-0544'),
-                  (2,'Inp Ain','123-456'),
+    entries_pop = [(1,'Bigmus Cles','000-430-0544'),
+                  (2,'Inp Ain','123-456-789'),
                   (3,'Pointle Sswaste','999-999-99'),
-                  (4,'Anno Yed','23-456-6')]
+                  (4,'Anno Yed','234-456-633'),
+                  (5,'Revo Lution','1-444-234-999]
     cursor.executemany("insert into entries values (?,?,?)", entries_pop)
 
+    #selects value from database
+    select=input("Enter first and last name of person whose phone number you would like to view:")
+    cursor.execute("select * from Entries where name=:c",{"c":select})
+    name_search=cursor.fetchall()
+    print(name_search)
+    
     #inserts new value into database
-    name=input("Enter name:")
-    number=input("Enter phone number with no dashes or spaces:")
+    name=input("Enter name of person you would like to add to database:")
+    number=input("Enter their phone number:")
     cursor.execute('''INSERT INTO Entries (name,number) VALUES (?,?)''',(name,number))
     #deletes value of choice from database
-    delent=int(input("Enter the ID of the phone number to delete:"))
+    delent=int(input("Enter the ID of the person to delete:"))
     cursor.execute('''DELETE FROM Entries Where EntriesID==?''',(delent,))
 
     #prints all values in database
@@ -41,10 +48,7 @@ def entries_table(cursor):
         print(row)
         
     
-    #selects specific value from database
-    cursor.execute("select * from entries where name=:n",{"n":"Micah DeCaro"})
-    name_search=cursor.fetchall()
-    print(name_search)
+   
 
 if __name__ == '__main__':
     main()
