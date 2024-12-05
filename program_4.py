@@ -25,7 +25,7 @@ def entries_table(cursor):
                   (2,'Inp Ain','123-456-789'),
                   (3,'Pointle Sswaste','999-999-99'),
                   (4,'Anno Yed','234-456-633'),
-                  (5,'Revo Lution','1-444-234-999]
+                  (5,'Revo Lution','1-444-234-999')]
     cursor.executemany("insert into entries values (?,?,?)", entries_pop)
 
     #selects value from database
