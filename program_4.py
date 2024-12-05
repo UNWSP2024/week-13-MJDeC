@@ -40,12 +40,19 @@ def entries_table(cursor):
     
     
     #inserts new value into database
-    name=input("Enter the name of person you would like to add to database:")
-    number=input("Enter their phone number:")
-    cursor.execute('''INSERT INTO Entries (name,number) VALUES (?,?)''',(name,number))
+    cont2='y'
+    while cont2=='y':    
+        name=input("Enter the name of person you would like to add to database:")
+        number=input("Enter their phone number:")
+        cursor.execute('''INSERT INTO Entries (name,number) VALUES (?,?)''',(name,number))
+        cont2=input("Would you like to add more people/numbers? Press y for yes or another key to continue.")
+    
     #deletes value of choice from database
-    delent=int(input("Enter the ID of the person to delete:"))
-    cursor.execute('''DELETE FROM Entries Where EntriesID==?''',(delent,))
+    cont3='y'
+    while cont3=='y':
+        delent=int(input("Enter the ID of the person to delete:"))
+        cursor.execute('''DELETE FROM Entries Where EntriesID==?''',(delent,))
+        cont3=input("Would you like to delete more entries? Press y for yes or another key to continue.")
 
     #prints all values in database
     print("Here are the current contents of the database:")
